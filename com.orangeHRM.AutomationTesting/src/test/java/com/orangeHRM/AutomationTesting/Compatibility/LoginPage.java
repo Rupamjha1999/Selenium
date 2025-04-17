@@ -16,7 +16,7 @@ public class LoginPage {
 		WebDriver driver=new ChromeDriver();
 		driver.manage().window().maximize();
 		driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
-		Thread.sleep(3000);
+		Thread.sleep(5000);
 		driver.close();
 		
 		
@@ -24,7 +24,7 @@ public class LoginPage {
 		driver=new EdgeDriver();
 		driver.manage().window().maximize();
 		driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
-		Thread.sleep(3000);
+		Thread.sleep(5000);
 		driver.close();
 		
 		
@@ -32,14 +32,14 @@ public class LoginPage {
 		driver=new FirefoxDriver();
 		driver.manage().window().maximize();
 		driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
-		Thread.sleep(3000);
+		Thread.sleep(5000);
 		driver.close();
 		
 		//for internet Explorer
 		driver= new InternetExplorerDriver();
 		driver.manage().window().maximize();
 		driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
-		Thread.sleep(3000);
+		Thread.sleep(5000);
 		driver.close();
 		
 		
