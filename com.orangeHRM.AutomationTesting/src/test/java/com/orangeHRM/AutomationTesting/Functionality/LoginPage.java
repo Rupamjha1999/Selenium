@@ -28,7 +28,8 @@ public class LoginPage {
 		Thread.sleep(4000);
 		//validating the username textfield
 		
-		login.validCredential();
+		//login.validCredential();
+		login.forgetPassword();
 		
 		
 	}
@@ -38,18 +39,49 @@ public class LoginPage {
 	
 	driver.close();
 	}
+	
+	
+	
+		
+		
+	public void forgetPassword() throws InterruptedException {
+		
+		driver.findElement(By.className("orangehrm-login-forgot")).click();
+		String actualUrl=driver.getCurrentUrl();
+		String expectedUrl="https://opensource-demo.orangehrmlive.com/web/index.php/auth/requestPasswordResetCode";
+		
+		if(actualUrl.equals(expectedUrl)) {
+			System.out.println(" Reset password page is  opened | forgetPassword");
+			Thread.sleep(2000);
+			
+			
+			
+		}
+		else {
+			System.out.println(" Reset password page is not opend | forgetPassword");
+			
+		}
+	}
+	
+	//for social link
+public void socialLinks() throws InterruptedException {
+		
+		driver.findElement(By.linkText("orangehrm-login-forgot")).click();
+		String actualUrl=driver.getCurrentUrl();
+		String expectedUrl="https://www.linkedin.com/company/orangehrm/";
+		
+}
+	
 
 	public void validCredential() throws InterruptedException {
 		
-		WebElement username,password,login;
-		username=driver.findElement(By.name("username"));
-		username.sendKeys("admin");
+	
+		driver.findElement(By.name("username")).sendKeys("admin");
+		Thread.sleep(2000);
+		driver.findElement(By.name("password")).sendKeys("admin123");
+		Thread.sleep(2000);
+		driver.findElement(By.tagName("button")).click();
 		
-		password=driver.findElement(By.name("password"));
-		password.sendKeys("admin123");
-		
-		login=driver.findElement(By.tagName("button"));
-		login.click();
 		
 		String actualUrl=driver.getCurrentUrl();
 		String expectedUrl="https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index";
@@ -57,6 +89,7 @@ public class LoginPage {
 		if(actualUrl.equals(expectedUrl)) {
 			System.out.println(" dashboard is  opened | validCredential");
 			Thread.sleep(2000);
+			
 			
 			
 		}
@@ -67,17 +100,15 @@ public class LoginPage {
 	}
 	
 	
-	public void invalidUserPassword() {
+	public void invalidUserPassword() throws InterruptedException {
 		
-		WebElement username,password,login,error;
-		username=driver.findElement(By.name("username"));
-		username.sendKeys("admin12");
+		WebElement error;
+		driver.findElement(By.name("username")).sendKeys("admin12");
+		Thread.sleep(2000);
+		driver.findElement(By.name("password")).sendKeys("admin1267");
+		Thread.sleep(2000);
+		driver.findElement(By.tagName("button")).click();
 		
-		password=driver.findElement(By.name("password"));
-		password.sendKeys("admin1267");
-		
-		login=driver.findElement(By.tagName("button"));
-		login.click();
 		
 		
 		
@@ -99,17 +130,15 @@ public class LoginPage {
 	}
 	
 	
-	public void validUserInvalidPassword() {
+	public void validUserInvalidPassword() throws InterruptedException {
 		
-		WebElement username,password,login;
-		username=driver.findElement(By.name("username"));
-		username.sendKeys("admin");
 		
-		password=driver.findElement(By.name("password"));
-		password.sendKeys("admin127");
+		driver.findElement(By.name("username")).sendKeys("admin");
+		Thread.sleep(2000);
+		driver.findElement(By.name("password")).sendKeys("admin127");
+		Thread.sleep(2000);
+		driver.findElement(By.tagName("button")).click();
 		
-		login=driver.findElement(By.tagName("button"));
-		login.click();
 		
 		String actualUrl=driver.getCurrentUrl();
 		String expectedUrl="https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index";
@@ -126,17 +155,15 @@ public class LoginPage {
 
 
 
-	public void InvalidUservalidPassword() {
+	public void InvalidUservalidPassword() throws InterruptedException {
 	
-	WebElement username,password,login;
-	username=driver.findElement(By.name("username"));
-	username.sendKeys("dameon");
 	
-	password=driver.findElement(By.name("password"));
-	password.sendKeys("admin123");
+	driver.findElement(By.name("username")).sendKeys("dameon");
+	Thread.sleep(2000);
+	driver.findElement(By.name("password")).sendKeys("admin123");
+	Thread.sleep(2000);
+	driver.findElement(By.tagName("button")).click();
 	
-	login=driver.findElement(By.tagName("button"));
-	login.click();
 	
 	String actualUrl=driver.getCurrentUrl();
 	String expectedUrl="https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index";
@@ -152,17 +179,15 @@ public class LoginPage {
 }
 	
 	
-	public void blankUservalidPassword() {
+	public void blankUservalidPassword() throws InterruptedException {
 		
-		WebElement username,password,login;
-		username=driver.findElement(By.name("username"));
-		username.sendKeys("");
 		
-		password=driver.findElement(By.name("password"));
-		password.sendKeys("admin123");
+		driver.findElement(By.name("username")).sendKeys("");
+		Thread.sleep(2000);
+		driver.findElement(By.name("password")).sendKeys("admin123");
+		Thread.sleep(2000);
+		driver.findElement(By.tagName("button")).click();
 		
-		login=driver.findElement(By.tagName("button"));
-		login.click();
 		
 		String actualUrl=driver.getCurrentUrl();
 		String expectedUrl="https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index";
@@ -178,17 +203,15 @@ public class LoginPage {
 	}
 	
 	
-	public void blankUserInvalidPassword() {
+	public void blankUserInvalidPassword() throws InterruptedException {
 		
-		WebElement username,password,login;
-		username=driver.findElement(By.name("username"));
-		username.sendKeys("");
 		
-		password=driver.findElement(By.name("password"));
-		password.sendKeys("admin678");
-		
-		login=driver.findElement(By.tagName("button"));
-		login.click();
+		driver.findElement(By.name("username")).sendKeys("");
+		Thread.sleep(2000);
+		driver.findElement(By.name("password")).sendKeys("admin678");
+		Thread.sleep(2000);
+		driver.findElement(By.tagName("button")).click();
+
 		
 		String actualUrl=driver.getCurrentUrl();
 		String expectedUrl="https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index";
@@ -203,17 +226,15 @@ public class LoginPage {
 		}
 	}
 
-	public void validUserBlankPassword() {
+	public void validUserBlankPassword() throws InterruptedException {
 	
-	WebElement username,password,login;
-	username=driver.findElement(By.name("username"));
-	username.sendKeys("admin");
 	
-	password=driver.findElement(By.name("password"));
-	password.sendKeys("");
+	driver.findElement(By.name("username")).sendKeys("admin");;
+	Thread.sleep(2000);
+	driver.findElement(By.name("password")).sendKeys("");
+	Thread.sleep(2000);
+	driver.findElement(By.tagName("button")).click();
 	
-	login=driver.findElement(By.tagName("button"));
-	login.click();
 	
 	String actualUrl=driver.getCurrentUrl();
 	String expectedUrl="https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index";
@@ -228,17 +249,15 @@ public class LoginPage {
 	}
 }
 
-	public void invalidUserBlankPassword() {
+	public void invalidUserBlankPassword() throws InterruptedException {
 	
-	WebElement username,password,login;
-	username=driver.findElement(By.name("username"));
-	username.sendKeys("masteradmin");
 	
-	password=driver.findElement(By.name("password"));
-	password.sendKeys("");
-	
-	login=driver.findElement(By.tagName("button"));
-	login.click();
+	driver.findElement(By.name("username")).sendKeys("masteradmin");
+	Thread.sleep(2000);
+	driver.findElement(By.name("password")).sendKeys("");
+	Thread.sleep(2000);
+	driver.findElement(By.tagName("button")).click();
+
 	
 	String actualUrl=driver.getCurrentUrl();
 	String expectedUrl="https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index";
@@ -254,17 +273,15 @@ public class LoginPage {
 }
 
 
-	public void blankUserBlankPassword() {
+	public void blankUserBlankPassword() throws InterruptedException {
 	
-	WebElement username,password,login;
-	username=driver.findElement(By.name("username"));
-	username.sendKeys("masteradmin");
 	
-	password=driver.findElement(By.name("password"));
-	password.sendKeys("");
+	driver.findElement(By.name("username")).sendKeys("masteradmin");
+	Thread.sleep(2000);
+	driver.findElement(By.name("password")).sendKeys("");
+	Thread.sleep(2000);
 	
-	login=driver.findElement(By.tagName("button"));
-	login.click();
+	driver.findElement(By.tagName("button")).click();
 	
 	String actualUrl=driver.getCurrentUrl();
 	String expectedUrl="https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index";
@@ -279,17 +296,15 @@ public class LoginPage {
 	}
 }
 
-public void Uppercase_UserPassword() {
+public void Uppercase_UserPassword() throws InterruptedException {
 	
 	WebElement username,password,login;
-	username=driver.findElement(By.name("username"));
-	username.sendKeys("ADMIN");
+	driver.findElement(By.name("username")).sendKeys("ADMIN");
+	Thread.sleep(2000);
+	driver.findElement(By.name("password")).sendKeys("ADMIN123");
+	Thread.sleep(2000);
+	driver.findElement(By.tagName("button")).click();
 	
-	password=driver.findElement(By.name("password"));
-	password.sendKeys("ADMIN123");
-	
-	login=driver.findElement(By.tagName("button"));
-	login.click();
 	
 	String actualUrl=driver.getCurrentUrl();
 	String expectedUrl="https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index";
@@ -304,14 +319,13 @@ public void Uppercase_UserPassword() {
 	}
 }
 
-	public void UppercaseUser_lowercasePassword() {
+	public void UppercaseUser_lowercasePassword() throws InterruptedException {
 	
 	WebElement username,password,login;
-	username=driver.findElement(By.name("username"));
-	username.sendKeys("ADMIN");
-	
-	password=driver.findElement(By.name("password"));
-	password.sendKeys("admin123");
+	driver.findElement(By.name("username")).sendKeys("ADMIN");
+	Thread.sleep(2000);
+	driver.findElement(By.name("password")).sendKeys("admin123");
+	Thread.sleep(2000);
 	
 	login=driver.findElement(By.tagName("button"));
 	login.click();
@@ -329,15 +343,13 @@ public void Uppercase_UserPassword() {
 	}
 }
 
-	public void lowercaseUser_UppercasePassword() {
+	public void lowercaseUser_UppercasePassword() throws InterruptedException {
 	
 	WebElement username,password,login;
-	username=driver.findElement(By.name("username"));
-	username.sendKeys("admin");
-	
-	password=driver.findElement(By.name("password"));
-	password.sendKeys("ADMIN123");
-	
+	driver.findElement(By.name("username")).sendKeys("admin");
+	Thread.sleep(2000);
+	driver.findElement(By.name("password")).sendKeys("ADMIN123");
+	Thread.sleep(2000);
 	login=driver.findElement(By.tagName("button"));
 	login.click();
 	
@@ -354,17 +366,14 @@ public void Uppercase_UserPassword() {
 	}
 }
 
-	public void lowercaseUser_lowercasePassword() {
+	public void lowercaseUser_lowercasePassword() throws InterruptedException {
 	
 	WebElement username,password,login;
-	username=driver.findElement(By.name("username"));
-	username.sendKeys("admin");
-	
-	password=driver.findElement(By.name("password"));
-	password.sendKeys("admin123");
-	
-	login=driver.findElement(By.tagName("button"));
-	login.click();
+	driver.findElement(By.name("username")).sendKeys("admin");
+	Thread.sleep(2000);
+	driver.findElement(By.name("password")).sendKeys("admin123");
+	Thread.sleep(2000);
+	driver.findElement(By.tagName("button")).click();
 	
 	String actualUrl=driver.getCurrentUrl();
 	String expectedUrl="https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index";
