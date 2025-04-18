@@ -1,390 +1,443 @@
 package com.orangeHRM.AutomationTesting.Functionality;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.support.ui.Select;
 
 public class LoginPage {
 	static WebDriver driver;
+
 	public static void main(String[] args) throws InterruptedException {
-		
-	 driver=new ChromeDriver();
-	 LoginPage login=new LoginPage();
-		
-	String expectedTitle="OrangeHRM";
-	String expectedUrl="https://opensource-demo.orangehrmlive.com/web/index.php/auth/login";
-	
-	driver.manage().window().maximize();
-	driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
-	Thread.sleep(2000);
-	String actualTitle=driver.getTitle();
-	String actualUrl=driver.getCurrentUrl();
-	
-	//System.out.println(actualTitle);
-	//validating the login page
-	if(actualUrl.equals(expectedUrl) && actualTitle.equals(expectedTitle)) {
-		System.out.println("OrangeHRM web application is  opened |validation successful");
-		Thread.sleep(4000);
-		//validating the username textfield
-		
-		//login.validCredential();
-		login.forgetPassword();
-		
-		
+
+		driver = new ChromeDriver();
+		LoginPage login = new LoginPage();
+
+		String expectedTitle = "OrangeHRM";
+		String expectedUrl = "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login";
+
+		driver.manage().window().maximize();
+		driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
+		Thread.sleep(2000);
+		String actualTitle = driver.getTitle();
+		String actualUrl = driver.getCurrentUrl();
+
+		// System.out.println(actualTitle);
+		// validating the login page
+		if (actualUrl.equals(expectedUrl) && actualTitle.equals(expectedTitle)) {
+			System.out.println("OrangeHRM web application is  opened |validation successful");
+			Thread.sleep(4000);
+			
+			//1
+			 login.validCredential();
+			 Thread.sleep(3000);
+			 //2
+			 login.invalidUserPassword();
+			 Thread.sleep(4000);
+			 
+			 //3
+			 login.blankUserBlankPassword();
+			 Thread.sleep(4000);
+			 //4
+			 login.blankUserInvalidPassword();
+			 Thread.sleep(4000);
+			 
+			 //5
+			 login.blankUservalidPassword();
+			 Thread.sleep(4000);
+			 
+			 //6
+			 login.invalidUserBlankPassword();
+			 Thread.sleep(4000);
+			
+			 //7
+			 login.InvalidUservalidPassword();
+			 Thread.sleep(4000);
+			 
+			 //8
+			 login.lowercaseUser_lowercasePassword();
+			 Thread.sleep(4000);
+			 
+			 //9
+			 login.lowercaseUser_UppercasePassword();
+			 Thread.sleep(4000);
+			 
+			 //10
+			 login.Uppercase_UserPassword();
+			 Thread.sleep(4000);
+			 
+			 //11
+			 login.UppercaseUser_lowercasePassword();
+			 Thread.sleep(4000);
+			 
+			 //12
+			 login.validUserBlankPassword();
+			 Thread.sleep(4000);
+			 
+			 //13
+			 login.validUserInvalidPassword();
+			 Thread.sleep(4000);
+			 
+			 //14
+			login.forgetPassword();
+			Thread.sleep(4000);
+			//15
+			login.socialLinks();
+			Thread.sleep(4000);
+
+		} else {
+			System.out.println("OrangeHRM web application is not opend | validation failed");
+		}
+
+		driver.close();
 	}
-	else {
-		System.out.println("OrangeHRM web application is not opend | validation failed");
-	}
-	
-	driver.close();
-	}
-	
-	
-	
-		
-		
+
 	public void forgetPassword() throws InterruptedException {
-		
+
 		driver.findElement(By.className("orangehrm-login-forgot")).click();
-		String actualUrl=driver.getCurrentUrl();
-		String expectedUrl="https://opensource-demo.orangehrmlive.com/web/index.php/auth/requestPasswordResetCode";
-		
-		if(actualUrl.equals(expectedUrl)) {
+		//driver.findElement(By.linkText("Forgot your password? ")).click();
+		String actualUrl = driver.getCurrentUrl();
+		String expectedUrl = "https://opensource-demo.orangehrmlive.com/web/index.php/auth/requestPasswordResetCode";
+
+		if (actualUrl.equals(expectedUrl)) {
 			System.out.println(" Reset password page is  opened | forgetPassword");
 			Thread.sleep(2000);
-			
-			
-			
-		}
-		else {
+
+		} else {
 			System.out.println(" Reset password page is not opend | forgetPassword");
-			
+
 		}
 	}
-	
-	//for social link
-public void socialLinks() throws InterruptedException {
-		
+
+	// for social link
+	public void socialLinks() throws InterruptedException {
+
 		driver.findElement(By.linkText("orangehrm-login-forgot")).click();
-		String actualUrl=driver.getCurrentUrl();
-		String expectedUrl="https://www.linkedin.com/company/orangehrm/";
-		
-}
-	
+		String actualUrl = driver.getCurrentUrl();
+		String expectedUrl = "https://www.linkedin.com/company/orangehrm/";
+
+	}
 
 	public void validCredential() throws InterruptedException {
-		
-	
+
 		driver.findElement(By.name("username")).sendKeys("admin");
 		Thread.sleep(2000);
-		driver.findElement(By.name("password")).sendKeys("admin123");
+		WebElement pass=driver.findElement(By.name("password"));
+		pass.sendKeys("admin123");
 		Thread.sleep(2000);
-		driver.findElement(By.tagName("button")).click();
+		
+		/*
+		 * calling login button because type is submit by using password web element
+		 */		
+		pass.submit();
 		
 		
-		String actualUrl=driver.getCurrentUrl();
-		String expectedUrl="https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index";
 		
-		if(actualUrl.equals(expectedUrl)) {
+		Thread.sleep(2000);
+		
+		String actualUrl = driver.getCurrentUrl();
+		String expectedUrl = "https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index";
+
+		if (actualUrl.equals(expectedUrl)) {
 			System.out.println(" dashboard is  opened | validCredential");
 			Thread.sleep(2000);
 			
+			driver.findElement(By.xpath("//*[@id=\"app\"]/div[1]/div[1]/header/div[1]/div[3]/ul/li/span/i")).click();
+			Thread.sleep(3000);
+			List <WebElement> dropdown_list=driver.findElements(By.className("oxd-userdropdown-link"));
 			
+			for(WebElement i:dropdown_list) {
+				if(i.getText().equals("Logout")) {
+				
+					
+					System.out.println(i.getText()+" button is clicked");
+					i.click();
+					Thread.sleep(3000);
+					
+				}
+				
+			}
+			Thread.sleep(2000);
 			
-		}
-		else {
+		} else {
 			System.out.println(" dashboard is not opend | validCredential");
-			
+
 		}
 	}
-	
-	
+
 	public void invalidUserPassword() throws InterruptedException {
-		
-		WebElement error;
+
+		WebElement passwordtextfield;
 		driver.findElement(By.name("username")).sendKeys("admin12");
 		Thread.sleep(2000);
-		driver.findElement(By.name("password")).sendKeys("admin1267");
+		passwordtextfield = driver.findElement(By.name("password"));
+		passwordtextfield.sendKeys("admin1267");
 		Thread.sleep(2000);
-		driver.findElement(By.tagName("button")).click();
+
+		// when the after password field next button is submit type button
+		passwordtextfield.submit();
+		Thread.sleep(2000);
 		
-		
-		
-		
-		//error=driver.findElement(By.xpath("//*[@id=\"app\"]/div[1]/div/div[1]/div/div[2]/div[2]/div/div[1]/div[1]/p"));
-		//String error_msg=error.getText();
-		
-		//oxd-text oxd-text--p oxd-alert-content-text
-		String actualUrl=driver.getCurrentUrl();
-		String expectedUrl="https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index";
-		
-		if(actualUrl.equals(expectedUrl)) {
+		String actualUrl = driver.getCurrentUrl();
+		String expectedUrl = "https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index";
+
+		if (actualUrl.equals(expectedUrl)) {
 			System.out.println(" dashboard is  opened | invalidUserPassword");
-			
-		}
-		else {
-			//System.out.println(" dashboard is not opend | output is "+error_msg);
-			System.out.println(" dashboard is not opend | invalidUserPassword" );
+
+		} else {
+			// System.out.println(" dashboard is not opend | output is "+error_msg);
+			System.out.println(" dashboard is not opend | invalidUserPassword");
 		}
 	}
-	
-	
+
 	public void validUserInvalidPassword() throws InterruptedException {
-		
-		
+
 		driver.findElement(By.name("username")).sendKeys("admin");
 		Thread.sleep(2000);
 		driver.findElement(By.name("password")).sendKeys("admin127");
 		Thread.sleep(2000);
 		driver.findElement(By.tagName("button")).click();
-		
-		
-		String actualUrl=driver.getCurrentUrl();
-		String expectedUrl="https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index";
-		
-		if(actualUrl.equals(expectedUrl)) {
+
+		String actualUrl = driver.getCurrentUrl();
+		String expectedUrl = "https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index";
+
+		if (actualUrl.equals(expectedUrl)) {
 			System.out.println(" dashboard is  opened | validUserInvalidPassword");
-			
-		}
-		else {
+
+		} else {
 			System.out.println(" dashboard is not opend | validUserInvalidPassword");
-			
+
 		}
 	}
-
-
 
 	public void InvalidUservalidPassword() throws InterruptedException {
-	
-	
-	driver.findElement(By.name("username")).sendKeys("dameon");
-	Thread.sleep(2000);
-	driver.findElement(By.name("password")).sendKeys("admin123");
-	Thread.sleep(2000);
-	driver.findElement(By.tagName("button")).click();
-	
-	
-	String actualUrl=driver.getCurrentUrl();
-	String expectedUrl="https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index";
-	
-	if(actualUrl.equals(expectedUrl)) {
-		System.out.println(" dashboard is  opened | InvalidUservalidPassword");
-		
+
+		driver.findElement(By.name("username")).sendKeys("dameon");
+		Thread.sleep(2000);
+		driver.findElement(By.name("password")).sendKeys("admin123");
+		Thread.sleep(2000);
+		driver.findElement(By.tagName("button")).click();
+
+		String actualUrl = driver.getCurrentUrl();
+		String expectedUrl = "https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index";
+
+		if (actualUrl.equals(expectedUrl)) {
+			System.out.println(" dashboard is  opened | InvalidUservalidPassword");
+
+		} else {
+			System.out.println(" dashboard is not opend | InvalidUservalidPassword");
+
+		}
 	}
-	else {
-		System.out.println(" dashboard is not opend | InvalidUservalidPassword");
-		
-	}
-}
-	
-	
+
 	public void blankUservalidPassword() throws InterruptedException {
-		
-		
+
 		driver.findElement(By.name("username")).sendKeys("");
 		Thread.sleep(2000);
 		driver.findElement(By.name("password")).sendKeys("admin123");
 		Thread.sleep(2000);
 		driver.findElement(By.tagName("button")).click();
-		
-		
-		String actualUrl=driver.getCurrentUrl();
-		String expectedUrl="https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index";
-		
-		if(actualUrl.equals(expectedUrl)) {
+
+		String actualUrl = driver.getCurrentUrl();
+		String expectedUrl = "https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index";
+
+		if (actualUrl.equals(expectedUrl)) {
 			System.out.println(" dashboard is  opened | blankUservalidPassword");
-			
-		}
-		else {
+
+		} else {
 			System.out.println(" dashboard is not opend | blankUservalidPassword");
-			
+
 		}
 	}
-	
-	
+
 	public void blankUserInvalidPassword() throws InterruptedException {
-		
-		
+
 		driver.findElement(By.name("username")).sendKeys("");
 		Thread.sleep(2000);
 		driver.findElement(By.name("password")).sendKeys("admin678");
 		Thread.sleep(2000);
 		driver.findElement(By.tagName("button")).click();
 
-		
-		String actualUrl=driver.getCurrentUrl();
-		String expectedUrl="https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index";
-		
-		if(actualUrl.equals(expectedUrl)) {
+		String actualUrl = driver.getCurrentUrl();
+		String expectedUrl = "https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index";
+
+		if (actualUrl.equals(expectedUrl)) {
 			System.out.println(" dashboard is  opened | blankUserInvalidPassword");
-			
-		}
-		else {
+
+		} else {
 			System.out.println(" dashboard is not opend | blankUserInvalidPassword");
-			
+
 		}
 	}
 
 	public void validUserBlankPassword() throws InterruptedException {
-	
-	
-	driver.findElement(By.name("username")).sendKeys("admin");;
-	Thread.sleep(2000);
-	driver.findElement(By.name("password")).sendKeys("");
-	Thread.sleep(2000);
-	driver.findElement(By.tagName("button")).click();
-	
-	
-	String actualUrl=driver.getCurrentUrl();
-	String expectedUrl="https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index";
-	
-	if(actualUrl.equals(expectedUrl)) {
-		System.out.println(" dashboard is  opened | validUserBlankPassword");
-		
+
+		driver.findElement(By.name("username")).sendKeys("admin");
+		;
+		Thread.sleep(2000);
+		driver.findElement(By.name("password")).sendKeys("");
+		Thread.sleep(2000);
+		driver.findElement(By.tagName("button")).click();
+
+		String actualUrl = driver.getCurrentUrl();
+		String expectedUrl = "https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index";
+
+		if (actualUrl.equals(expectedUrl)) {
+			System.out.println(" dashboard is  opened | validUserBlankPassword");
+
+		} else {
+			System.out.println(" dashboard is not opend | validUserBlankPassword");
+
+		}
 	}
-	else {
-		System.out.println(" dashboard is not opend | validUserBlankPassword");
-		
-	}
-}
 
 	public void invalidUserBlankPassword() throws InterruptedException {
-	
-	
-	driver.findElement(By.name("username")).sendKeys("masteradmin");
-	Thread.sleep(2000);
-	driver.findElement(By.name("password")).sendKeys("");
-	Thread.sleep(2000);
-	driver.findElement(By.tagName("button")).click();
 
-	
-	String actualUrl=driver.getCurrentUrl();
-	String expectedUrl="https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index";
-	
-	if(actualUrl.equals(expectedUrl)) {
-		System.out.println(" dashboard is  opened | invalidUserBlankPassword");
-		
-	}
-	else {
-		System.out.println(" dashboard is not opend | invalidUserBlankPassword");
-		
-	}
-}
+		driver.findElement(By.name("username")).sendKeys("masteradmin");
+		Thread.sleep(2000);
+		driver.findElement(By.name("password")).sendKeys("");
+		Thread.sleep(2000);
+		driver.findElement(By.tagName("button")).click();
 
+		String actualUrl = driver.getCurrentUrl();
+		String expectedUrl = "https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index";
+
+		if (actualUrl.equals(expectedUrl)) {
+			System.out.println(" dashboard is  opened | invalidUserBlankPassword");
+
+		} else {
+			System.out.println(" dashboard is not opend | invalidUserBlankPassword");
+
+		}
+	}
 
 	public void blankUserBlankPassword() throws InterruptedException {
-	
-	
-	driver.findElement(By.name("username")).sendKeys("masteradmin");
-	Thread.sleep(2000);
-	driver.findElement(By.name("password")).sendKeys("");
-	Thread.sleep(2000);
-	
-	driver.findElement(By.tagName("button")).click();
-	
-	String actualUrl=driver.getCurrentUrl();
-	String expectedUrl="https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index";
-	
-	if(actualUrl.equals(expectedUrl)) {
-		System.out.println(" dashboard is  opened | blankUserBlankPassword");
-		
-	}
-	else {
-		System.out.println(" dashboard is not opend | blankUserBlankPassword");
-		
-	}
-}
 
-public void Uppercase_UserPassword() throws InterruptedException {
-	
-	WebElement username,password,login;
-	driver.findElement(By.name("username")).sendKeys("ADMIN");
-	Thread.sleep(2000);
-	driver.findElement(By.name("password")).sendKeys("ADMIN123");
-	Thread.sleep(2000);
-	driver.findElement(By.tagName("button")).click();
-	
-	
-	String actualUrl=driver.getCurrentUrl();
-	String expectedUrl="https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index";
-	
-	if(actualUrl.equals(expectedUrl)) {
-		System.out.println(" dashboard is  opened | Uppercase_UserPassword");
-		
+		driver.findElement(By.name("username")).sendKeys("masteradmin");
+		Thread.sleep(2000);
+		driver.findElement(By.name("password")).sendKeys("");
+		Thread.sleep(2000);
+
+		driver.findElement(By.tagName("button")).click();
+
+		String actualUrl = driver.getCurrentUrl();
+		String expectedUrl = "https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index";
+
+		if (actualUrl.equals(expectedUrl)) {
+			System.out.println(" dashboard is  opened | blankUserBlankPassword");
+
+		} else {
+			System.out.println(" dashboard is not opend | blankUserBlankPassword");
+
+		}
 	}
-	else {
-		System.out.println(" dashboard is not opend | Uppercase_UserPassword");
-		
+
+	public void Uppercase_UserPassword() throws InterruptedException {
+
+		WebElement username, password, login;
+		driver.findElement(By.name("username")).sendKeys("ADMIN");
+		Thread.sleep(2000);
+		driver.findElement(By.name("password")).sendKeys("ADMIN123");
+		Thread.sleep(2000);
+		driver.findElement(By.tagName("button")).click();
+
+		String actualUrl = driver.getCurrentUrl();
+		String expectedUrl = "https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index";
+
+		if (actualUrl.equals(expectedUrl)) {
+			System.out.println(" dashboard is  opened | Uppercase_UserPassword");
+
+		} else {
+			System.out.println(" dashboard is not opend | Uppercase_UserPassword");
+
+		}
 	}
-}
 
 	public void UppercaseUser_lowercasePassword() throws InterruptedException {
-	
-	WebElement username,password,login;
-	driver.findElement(By.name("username")).sendKeys("ADMIN");
-	Thread.sleep(2000);
-	driver.findElement(By.name("password")).sendKeys("admin123");
-	Thread.sleep(2000);
-	
-	login=driver.findElement(By.tagName("button"));
-	login.click();
-	
-	String actualUrl=driver.getCurrentUrl();
-	String expectedUrl="https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index";
-	
-	if(actualUrl.equals(expectedUrl)) {
-		System.out.println(" dashboard is  opened | UppercaseUser_lowercasePassword");
-		
+
+		WebElement username, password, login;
+		driver.findElement(By.name("username")).sendKeys("ADMIN");
+		Thread.sleep(2000);
+		driver.findElement(By.name("password")).sendKeys("admin123");
+		Thread.sleep(2000);
+
+		login = driver.findElement(By.tagName("button"));
+		login.click();
+
+		String actualUrl = driver.getCurrentUrl();
+		String expectedUrl = "https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index";
+
+		if (actualUrl.equals(expectedUrl))
+		{
+			System.out.println(" dashboard is  opened | UppercaseUser_lowercasePassword");
+			
+				driver.findElement(By.xpath("//*[@id=\"app\"]/div[1]/div[1]/header/div[1]/div[3]/ul/li/span/i")).click();
+				Thread.sleep(3000);
+				List <WebElement> dropdown_list=driver.findElements(By.className("oxd-userdropdown-link"));
+				
+				for(WebElement i:dropdown_list) 
+				{
+					if(i.getText().equals("Logout")) 
+					{
+					
+						
+						System.out.println(i.getText()+" button is clicked");
+						i.click();
+						Thread.sleep(3000);
+						
+					}
+				}
+				
+		} else {
+			System.out.println(" dashboard is not opend | UppercaseUser_lowercasePassword");
+
+		}
 	}
-	else {
-		System.out.println(" dashboard is not opend | UppercaseUser_lowercasePassword");
-		
-	}
-}
 
 	public void lowercaseUser_UppercasePassword() throws InterruptedException {
-	
-	WebElement username,password,login;
-	driver.findElement(By.name("username")).sendKeys("admin");
-	Thread.sleep(2000);
-	driver.findElement(By.name("password")).sendKeys("ADMIN123");
-	Thread.sleep(2000);
-	login=driver.findElement(By.tagName("button"));
-	login.click();
-	
-	String actualUrl=driver.getCurrentUrl();
-	String expectedUrl="https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index";
-	
-	if(actualUrl.equals(expectedUrl)) {
-		System.out.println(" dashboard is  opened | lowercaseUser_UppercasePassword");
-		
+
+		WebElement username, password, login;
+		driver.findElement(By.name("username")).sendKeys("admin");
+		Thread.sleep(2000);
+		driver.findElement(By.name("password")).sendKeys("ADMIN123");
+		Thread.sleep(2000);
+		login = driver.findElement(By.tagName("button"));
+		login.click();
+
+		String actualUrl = driver.getCurrentUrl();
+		String expectedUrl = "https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index";
+
+		if (actualUrl.equals(expectedUrl)) {
+			System.out.println(" dashboard is  opened | lowercaseUser_UppercasePassword");
+
+		} else {
+			System.out.println(" dashboard is not opend | lowercaseUser_UppercasePassword");
+
+		}
 	}
-	else {
-		System.out.println(" dashboard is not opend | lowercaseUser_UppercasePassword");
-		
-	}
-}
 
 	public void lowercaseUser_lowercasePassword() throws InterruptedException {
-	
-	WebElement username,password,login;
-	driver.findElement(By.name("username")).sendKeys("admin");
-	Thread.sleep(2000);
-	driver.findElement(By.name("password")).sendKeys("admin123");
-	Thread.sleep(2000);
-	driver.findElement(By.tagName("button")).click();
-	
-	String actualUrl=driver.getCurrentUrl();
-	String expectedUrl="https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index";
-	
-	if(actualUrl.equals(expectedUrl)) {
-		System.out.println(" dashboard is  opened | lowercaseUser_lowercasePassword");
-		
+
+		WebElement username, password, login;
+		driver.findElement(By.name("username")).sendKeys("admin");
+		Thread.sleep(2000);
+		driver.findElement(By.name("password")).sendKeys("admin123");
+		Thread.sleep(2000);
+		driver.findElement(By.tagName("button")).click();
+
+		String actualUrl = driver.getCurrentUrl();
+		String expectedUrl = "https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index";
+
+		if (actualUrl.equals(expectedUrl)) {
+			System.out.println(" dashboard is  opened | lowercaseUser_lowercasePassword");
+
+		} else {
+			System.out.println(" dashboard is not opend | lowercaseUser_lowercasePassword");
+
+		}
 	}
-	else {
-		System.out.println(" dashboard is not opend | lowercaseUser_lowercasePassword");
-		
-	}
-}
 }
