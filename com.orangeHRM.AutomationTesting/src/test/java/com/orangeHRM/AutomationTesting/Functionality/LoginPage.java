@@ -144,23 +144,11 @@ public class LoginPage {
 		String actualUrl = driver.getCurrentUrl();
 		String expectedUrl = "https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index";
 
-		if (actualUrl.equals(expectedUrl)) {
-			System.out.println(" dashboard is  opened | validCredential");
-			Thread.sleep(2000);
-			if(page.equals("Dashboard")) {
-				
-			}
-			else{
-				logout(driver);
-			
-			}
-			Thread.sleep(2000);
-			
-		} else {
-			System.out.println(" dashboard is not opend | validCredential");
-
-		}
+		//calling urlvalidation method
+		urlValidation(actualUrl,expectedUrl,page,"validCredential", driver);
+		
 	}
+	
 
 	public void invalidUserPassword() throws InterruptedException {
 
@@ -178,14 +166,8 @@ public class LoginPage {
 		String actualUrl = driver.getCurrentUrl();
 		String expectedUrl = "https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index";
 
-		if (actualUrl.equals(expectedUrl)) {
-			System.out.println(" dashboard is  opened | invalidUserPassword");
-			
-		
-		} else {
-			// System.out.println(" dashboard is not opend | output is "+error_msg);
-			System.out.println(" dashboard is not opend | invalidUserPassword");
-		}
+		//calling urlvalidation method
+		urlValidation(actualUrl,expectedUrl,"LoginPage","invalidUserPassword", driver);
 	}
 
 	public void validUserInvalidPassword() throws InterruptedException {
@@ -199,13 +181,8 @@ public class LoginPage {
 		String actualUrl = driver.getCurrentUrl();
 		String expectedUrl = "https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index";
 
-		if (actualUrl.equals(expectedUrl)) {
-			System.out.println(" dashboard is  opened | validUserInvalidPassword");
-
-		} else {
-			System.out.println(" dashboard is not opend | validUserInvalidPassword");
-
-		}
+		//calling urlvalidation method
+		urlValidation(actualUrl,expectedUrl,"LoginPage","validUserInvalidPassword", driver);
 	}
 
 	public void InvalidUservalidPassword() throws InterruptedException {
@@ -219,13 +196,8 @@ public class LoginPage {
 		String actualUrl = driver.getCurrentUrl();
 		String expectedUrl = "https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index";
 
-		if (actualUrl.equals(expectedUrl)) {
-			System.out.println(" dashboard is  opened | InvalidUservalidPassword");
-
-		} else {
-			System.out.println(" dashboard is not opend | InvalidUservalidPassword");
-
-		}
+		//calling urlvalidation method
+		urlValidation(actualUrl,expectedUrl,"LoginPage","InvalidUservalidPassword",driver);
 	}
 
 	public void blankUservalidPassword() throws InterruptedException {
@@ -239,13 +211,8 @@ public class LoginPage {
 		String actualUrl = driver.getCurrentUrl();
 		String expectedUrl = "https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index";
 
-		if (actualUrl.equals(expectedUrl)) {
-			System.out.println(" dashboard is  opened | blankUservalidPassword");
-
-		} else {
-			System.out.println(" dashboard is not opend | blankUservalidPassword");
-
-		}
+		//calling urlvalidation method
+		urlValidation(actualUrl,expectedUrl,"LoginPage","blankUservalidPassword", driver);
 	}
 
 	public void blankUserInvalidPassword() throws InterruptedException {
@@ -259,13 +226,8 @@ public class LoginPage {
 		String actualUrl = driver.getCurrentUrl();
 		String expectedUrl = "https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index";
 
-		if (actualUrl.equals(expectedUrl)) {
-			System.out.println(" dashboard is  opened | blankUserInvalidPassword");
-
-		} else {
-			System.out.println(" dashboard is not opend | blankUserInvalidPassword");
-
-		}
+		//calling urlvalidation method
+		urlValidation(actualUrl,expectedUrl,"LoginPage","blankUserInvalidPassword", driver);
 	}
 
 	public void validUserBlankPassword() throws InterruptedException {
@@ -280,13 +242,8 @@ public class LoginPage {
 		String actualUrl = driver.getCurrentUrl();
 		String expectedUrl = "https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index";
 
-		if (actualUrl.equals(expectedUrl)) {
-			System.out.println(" dashboard is  opened | validUserBlankPassword");
-
-		} else {
-			System.out.println(" dashboard is not opend | validUserBlankPassword");
-
-		}
+		//calling urlvalidation method
+		urlValidation(actualUrl,expectedUrl,"LoginPage","validUserBlankPassword", driver);
 	}
 
 	public void invalidUserBlankPassword() throws InterruptedException {
@@ -300,13 +257,8 @@ public class LoginPage {
 		String actualUrl = driver.getCurrentUrl();
 		String expectedUrl = "https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index";
 
-		if (actualUrl.equals(expectedUrl)) {
-			System.out.println(" dashboard is  opened | invalidUserBlankPassword");
-
-		} else {
-			System.out.println(" dashboard is not opend | invalidUserBlankPassword");
-
-		}
+		//calling urlvalidation method
+		urlValidation(actualUrl,expectedUrl,"LoginPage","invalidUserBlankPassword", driver);
 	}
 
 	public void blankUserBlankPassword() throws InterruptedException {
@@ -320,14 +272,8 @@ public class LoginPage {
 
 		String actualUrl = driver.getCurrentUrl();
 		String expectedUrl = "https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index";
-
-		if (actualUrl.equals(expectedUrl)) {
-			System.out.println(" dashboard is  opened | blankUserBlankPassword");
-
-		} else {
-			System.out.println(" dashboard is not opend | blankUserBlankPassword");
-
-		}
+		//calling urlvalidation method
+		urlValidation(actualUrl,expectedUrl,"LoginPage","blankUserBlankPassword", driver);
 	}
 
 	public void Uppercase_UserPassword() throws InterruptedException {
@@ -342,13 +288,8 @@ public class LoginPage {
 		String actualUrl = driver.getCurrentUrl();
 		String expectedUrl = "https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index";
 
-		if (actualUrl.equals(expectedUrl)) {
-			System.out.println(" dashboard is  opened | Uppercase_UserPassword");
-
-		} else {
-			System.out.println(" dashboard is not opend | Uppercase_UserPassword");
-
-		}
+		//calling urlvalidation method
+		urlValidation(actualUrl,expectedUrl,"LoginPage","Uppercase_UserPassword",driver);
 	}
 
 	public void UppercaseUser_lowercasePassword() throws InterruptedException {
@@ -365,31 +306,8 @@ public class LoginPage {
 		String actualUrl = driver.getCurrentUrl();
 		String expectedUrl = "https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index";
 
-		if (actualUrl.equals(expectedUrl))
-		{
-			System.out.println(" dashboard is  opened | UppercaseUser_lowercasePassword");
-			
-				driver.findElement(By.xpath("//*[@id=\"app\"]/div[1]/div[1]/header/div[1]/div[3]/ul/li/span/i")).click();
-				Thread.sleep(3000);
-				List <WebElement> dropdown_list=driver.findElements(By.className("oxd-userdropdown-link"));
-				
-				for(WebElement i:dropdown_list) 
-				{
-					if(i.getText().equals("Logout")) 
-					{
-					
-						
-						System.out.println(i.getText()+" button is clicked");
-						i.click();
-						Thread.sleep(3000);
-						
-					}
-				}
-				
-		} else {
-			System.out.println(" dashboard is not opend | UppercaseUser_lowercasePassword");
-
-		}
+		//calling urlvalidation method
+		urlValidation(actualUrl,expectedUrl,"LoginPage","UppercaseUser_lowercasePassword",driver);
 	}
 
 	public void lowercaseUser_UppercasePassword() throws InterruptedException {
@@ -405,13 +323,8 @@ public class LoginPage {
 		String actualUrl = driver.getCurrentUrl();
 		String expectedUrl = "https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index";
 
-		if (actualUrl.equals(expectedUrl)) {
-			System.out.println(" dashboard is  opened | lowercaseUser_UppercasePassword");
-
-		} else {
-			System.out.println(" dashboard is not opend | lowercaseUser_UppercasePassword");
-
-		}
+		//calling urlvalidation method
+		urlValidation(actualUrl,expectedUrl,"LoginPage","lowercaseUser_UppercasePassword", driver);
 	}
 
 	public void lowercaseUser_lowercasePassword() throws InterruptedException {
@@ -426,13 +339,8 @@ public class LoginPage {
 		String actualUrl = driver.getCurrentUrl();
 		String expectedUrl = "https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index";
 
-		if (actualUrl.equals(expectedUrl)) {
-			System.out.println(" dashboard is  opened | lowercaseUser_lowercasePassword");
-
-		} else {
-			System.out.println(" dashboard is not opend | lowercaseUser_lowercasePassword");
-
-		}
+		//calling urlvalidation method
+		urlValidation(actualUrl,expectedUrl,"LoginPage","lowercaseUser_lowercasePassword",driver);
 	}
 	
 	
@@ -453,4 +361,25 @@ public class LoginPage {
 			
 		}
 	}
+	
+	public void urlValidation(String actualUrl,String expectedUrl,String page,String methodName,WebDriver driver) throws InterruptedException {
+		
+		if (actualUrl.equals(expectedUrl)) {
+			System.out.println("dashboard is  opened | "+methodName);
+			Thread.sleep(2000);
+			if(page.equals("Dashboard")) {
+				
+			}
+			else{
+				logout(driver);
+			
+			}
+			Thread.sleep(2000);
+			
+		} else {
+			System.out.println(" dashboard is not opend | "+methodName);
+
+		}
+	}
+
 }

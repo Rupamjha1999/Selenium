@@ -29,6 +29,8 @@ public class Dashboard {
 	
 	public void dropDownMenu() throws InterruptedException {
 		
+		//System.out.println(" drop button is clicked");
+		
 		driver.findElement(By.className("oxd-userdropdown-name")).click();
 		Thread.sleep(3000);
 		List <WebElement> dropdown_list=driver.findElements(By.className("oxd-userdropdown-link"));
@@ -41,16 +43,15 @@ public class Dashboard {
 				
 				i.click();
 				Thread.sleep(3000);
-				
 				driver.findElement(By.xpath("//*[@id=\"app\"]/div[2]/div/div/div/button")).click();
 				Thread.sleep(1000);
 					
+				
 				
 			}	
 			
 		}
 		
-		System.out.println(dropdown_list.get(1));
 	}
 	
 	
