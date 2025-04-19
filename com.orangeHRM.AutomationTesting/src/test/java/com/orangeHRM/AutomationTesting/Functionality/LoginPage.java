@@ -33,7 +33,7 @@ public class LoginPage {
 			Thread.sleep(4000);
 			
 			//1
-			 login.validCredential();
+			 login.validCredential(driver,"Login");
 			 Thread.sleep(3000);
 			 //2
 			 login.invalidUserPassword();
@@ -83,11 +83,12 @@ public class LoginPage {
 			 Thread.sleep(4000);
 			 
 			 //14
-			login.forgetPassword();
-			Thread.sleep(4000);
-			//15
-			login.socialLinks();
-			Thread.sleep(4000);
+			 login.forgetPassword();
+			 Thread.sleep(4000);
+			
+			 //15
+			 login.socialLinks();
+			 Thread.sleep(4000);
 
 		} else {
 			System.out.println("OrangeHRM web application is not opend | validation failed");
@@ -99,12 +100,13 @@ public class LoginPage {
 	public void forgetPassword() throws InterruptedException {
 
 		driver.findElement(By.className("orangehrm-login-forgot")).click();
+		Thread.sleep(2000);
 		//driver.findElement(By.linkText("Forgot your password? ")).click();
 		String actualUrl = driver.getCurrentUrl();
 		String expectedUrl = "https://opensource-demo.orangehrmlive.com/web/index.php/auth/requestPasswordResetCode";
 
 		if (actualUrl.equals(expectedUrl)) {
-			System.out.println(" Reset password page is  opened | forgetPassword");
+			System.out.println("Reset password page is  opened | forgetPassword");
 			Thread.sleep(2000);
 
 		} else {
@@ -122,7 +124,7 @@ public class LoginPage {
 
 	}
 
-	public void validCredential() throws InterruptedException {
+	public void validCredential(WebDriver driver,String page) throws InterruptedException {
 
 		driver.findElement(By.name("username")).sendKeys("admin");
 		Thread.sleep(2000);
@@ -145,21 +147,12 @@ public class LoginPage {
 		if (actualUrl.equals(expectedUrl)) {
 			System.out.println(" dashboard is  opened | validCredential");
 			Thread.sleep(2000);
-			
-			driver.findElement(By.xpath("//*[@id=\"app\"]/div[1]/div[1]/header/div[1]/div[3]/ul/li/span/i")).click();
-			Thread.sleep(3000);
-			List <WebElement> dropdown_list=driver.findElements(By.className("oxd-userdropdown-link"));
-			
-			for(WebElement i:dropdown_list) {
-				if(i.getText().equals("Logout")) {
+			if(page.equals("Dashboard")) {
 				
-					
-					System.out.println(i.getText()+" button is clicked");
-					i.click();
-					Thread.sleep(3000);
-					
-				}
-				
+			}
+			else{
+				logout(driver);
+			
 			}
 			Thread.sleep(2000);
 			
@@ -187,7 +180,8 @@ public class LoginPage {
 
 		if (actualUrl.equals(expectedUrl)) {
 			System.out.println(" dashboard is  opened | invalidUserPassword");
-
+			
+		
 		} else {
 			// System.out.println(" dashboard is not opend | output is "+error_msg);
 			System.out.println(" dashboard is not opend | invalidUserPassword");
@@ -438,6 +432,25 @@ public class LoginPage {
 		} else {
 			System.out.println(" dashboard is not opend | lowercaseUser_lowercasePassword");
 
+		}
+	}
+	
+	
+	public void logout(WebDriver driver) throws InterruptedException {
+		driver.findElement(By.xpath("//*[@id=\"app\"]/div[1]/div[1]/header/div[1]/div[3]/ul/li/span/i")).click();
+		Thread.sleep(3000);
+		List <WebElement> dropdown_list=driver.findElements(By.className("oxd-userdropdown-link"));
+		
+		for(WebElement i:dropdown_list) {
+			if(i.getText().equals("Logout")) {
+			
+				
+				System.out.println(i.getText()+" button is clicked");
+				i.click();
+				Thread.sleep(3000);
+				
+			}
+			
 		}
 	}
 }
