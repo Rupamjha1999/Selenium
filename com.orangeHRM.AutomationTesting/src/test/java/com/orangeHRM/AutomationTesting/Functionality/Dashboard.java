@@ -70,19 +70,17 @@ public class Dashboard {
 		
 		List <WebElement> menuItem=driver.findElements(By.className("oxd-main-menu-item"));
 		
+		
 		for(WebElement i:menuItem) {
+			System.out.println(i.getText()+" button is clicked");
+			i.click();
+			Thread.sleep(3000);
 			
-				i.click();
-				System.out.println(i.getText()+" button is clicked");
-				
-				Thread.sleep(2000);
-				driver.navigate().back();
-			
+			driver.navigate().back();
 			
 			
 			
 		}
-	
 		
 	}
 	
