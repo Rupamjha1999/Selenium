@@ -91,7 +91,7 @@ public class LoginPage {
 			 Thread.sleep(4000);
 
 		} else {
-			System.out.println("OrangeHRM web application is not opend | validation failed");
+			System.err.println("OrangeHRM web application is not opend | validation failed");
 		}
 
 		driver.close();
@@ -110,7 +110,7 @@ public class LoginPage {
 			Thread.sleep(2000);
 
 		} else {
-			System.out.println(" Reset password page is not opend | forgetPassword");
+			System.err.println(" Reset password page is not opend | forgetPassword");
 
 		}
 	}
@@ -377,7 +377,7 @@ public class LoginPage {
 			Thread.sleep(2000);
 			
 		} else {
-			System.out.println(" dashboard is not opend | "+methodName);
+			System.err.println(" dashboard is not opend | "+methodName);
 
 		}
 	}
