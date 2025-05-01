@@ -6,15 +6,28 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class SideBar {
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-		
+//	public static void main(String[] args) {
+//		// TODO Auto-generated method stub
+//
+//		
+//	}
+	@FindBy(className="oxd-main-menu-item")
+	List<WebElement> menuItem;
+	
+	WebDriver driver;
+	
+	public SideBar(WebDriver driver)
+	{
+		PageFactory.initElements(driver, this);
+		this.driver=driver;
 	}
-	public void sideBar(WebDriver driver) throws InterruptedException {
+	
+	public void sideBar() throws InterruptedException {
 		//driver.navigate().to("https://opensource-demo.orangehrmlive.com/web/index.php/admin/viewSystemUsers");
 	
 		//code for seach textbox
@@ -26,23 +39,23 @@ public class SideBar {
 		Thread.sleep(3000);
 		
 		//driver.navigate().refresh();
-		List <WebElement> menuItem=driver.findElements(By.className("oxd-main-menu-item"));
-		int count=0;
+//		List <WebElement> menuItem=driver.findElements(By.className("oxd-main-menu-item"));
+//		int count=0;
 		for(WebElement i:menuItem) {
 			System.out.println(i.getText()+" button is clicked");
 			
-				if(i.getText().contains("Dashboard")) {
-					driver.navigate().refresh();
-					break;
-				}
-				else {
+//				if(i.getText().contains("Dashboard")) {
+//					driver.navigate().refresh();
+//					break;
+//				}
+//				else {
 				i.click();
-				Thread.sleep(2000);
+				Thread.sleep(4000);
 			
-				}
+//				}
 			
 				
-				driver.navigate().back();
+//				driver.navigate().back();
 			
 		}
 		

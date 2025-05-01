@@ -24,15 +24,15 @@ public class Dashboard {
 		LoginPage login=new LoginPage();
 		login.validCredential(driver,"Dashboard");
 		
-		//SideBar s=new SideBar();
-		//s.sideBar(driver);
+		SideBar s=new SideBar(driver);
+		s.sideBar();
 		
 //		DropDownMenu d=new DropDownMenu();
 //		d.dropDownMenu(driver);
 //		
-		AdminMenu a=new AdminMenu();
-		a.adminMenu(driver);
-		a.adminUserOption(driver);
+//		AdminMenu a=new AdminMenu();
+//		a.adminMenu(driver);
+//		a.adminUserOption(driver);
 		
 	}
 	
